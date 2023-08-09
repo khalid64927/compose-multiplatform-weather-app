@@ -1,5 +1,6 @@
 package com.rodrigoguerrero.myweather.ui.viewmodels
 
+import com.rodrigoguerrero.myweather.common.BaseViewModel
 import com.rodrigoguerrero.myweather.data.local.datastore.PreferencesRepository
 import com.rodrigoguerrero.myweather.domain.interactors.search.DeleteFavoriteLocationInteractor
 import com.rodrigoguerrero.myweather.domain.interactors.search.RetrieveFavoriteLocationsInteractor
@@ -9,7 +10,6 @@ import com.rodrigoguerrero.myweather.ui.models.uimodels.FavoriteLocation
 import com.rodrigoguerrero.myweather.ui.models.events.SearchEvent
 import com.rodrigoguerrero.myweather.ui.models.uistate.SearchUiState
 import com.rodrigoguerrero.myweather.ui.models.uistate.toUi
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -19,12 +19,10 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 
 @OptIn(FlowPreview::class)
-class SearchViewModel : ViewModel(), KoinComponent {
+class SearchViewModel : BaseViewModel() {
 
     private val searchInteractor: SearchInteractor = get()
     private val preferencesRepository: PreferencesRepository = get()
@@ -37,7 +35,7 @@ class SearchViewModel : ViewModel(), KoinComponent {
     private val search = MutableStateFlow<String?>(null)
 
     init {
-        viewModelScope.launch {
+        launchAsync {
             search
                 .filterNotNull()
                 .distinctUntilChanged()
@@ -53,7 +51,7 @@ class SearchViewModel : ViewModel(), KoinComponent {
                 }
         }
 
-        viewModelScope.launch {
+        launchAsync {
             retrieveFavoriteLocationsInteractor()
                 .collectLatest { favoriteLocations ->
                     onEvent(
@@ -112,13 +110,13 @@ class SearchViewModel : ViewModel(), KoinComponent {
     }
 
     private fun saveLocation(location: String) {
-        viewModelScope.launch {
+        launchAsync {
             preferencesRepository.saveLocation(location)
         }
     }
 
     private fun deleteLocation(favoriteLocation: FavoriteLocation) {
-        viewModelScope.launch {
+        launchAsync {
             deleteFavoriteLocationInteractor(favoriteLocation)
         }
     }

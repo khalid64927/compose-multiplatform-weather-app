@@ -1,5 +1,6 @@
 package com.rodrigoguerrero.myweather.ui.viewmodels
 
+import com.rodrigoguerrero.myweather.common.BaseViewModel
 import com.rodrigoguerrero.myweather.ui.models.events.TodayWeatherEvent
 import com.rodrigoguerrero.myweather.ui.models.uistate.TodayWeatherUiState
 import com.rodrigoguerrero.myweather.ui.models.uistate.isError
@@ -10,7 +11,7 @@ import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class TodayWeatherViewModel : ViewModel() {
+class TodayWeatherViewModel : BaseViewModel() {
 
     private val _state = MutableStateFlow(TodayWeatherUiState())
     val state = _state.asStateFlow()

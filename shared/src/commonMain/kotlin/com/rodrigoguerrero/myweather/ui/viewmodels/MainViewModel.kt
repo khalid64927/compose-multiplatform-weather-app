@@ -1,6 +1,7 @@
 package com.rodrigoguerrero.myweather.ui.viewmodels
 
 import androidx.compose.runtime.Composable
+import com.rodrigoguerrero.myweather.common.BaseViewModel
 import com.rodrigoguerrero.myweather.data.local.datastore.PreferencesRepository
 import com.rodrigoguerrero.myweather.data.remote.models.AirQuality
 import com.rodrigoguerrero.myweather.data.remote.models.WeatherAlerts
@@ -16,7 +17,6 @@ import com.rodrigoguerrero.myweather.ui.models.uistate.isError
 import com.rodrigoguerrero.myweather.ui.models.uistate.isLoading
 import com.rodrigoguerrero.myweather.ui.models.uistate.updateForecast
 import com.rodrigoguerrero.myweather.ui.models.uistate.updateQuery
-import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import dev.icerock.moko.permissions.DeniedAlwaysException
 import dev.icerock.moko.permissions.DeniedException
 import dev.icerock.moko.permissions.Permission
@@ -30,10 +30,9 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.koin.core.component.KoinComponent
 import org.koin.core.component.get
 
-class MainViewModel : ViewModel(), KoinComponent {
+class MainViewModel : BaseViewModel() {
 
     private val preferencesRepository: PreferencesRepository = get()
     private val forecastInteractor: ForecastInteractor = get()
@@ -60,11 +59,11 @@ class MainViewModel : ViewModel(), KoinComponent {
         }
 
     init {
-        viewModelScope.launch {
+        launchAsync {
             locationPermissionsFlow.collectLatest { event -> onEvent(event) }
         }
 
-        viewModelScope.launch {
+        launchAsync {
             when (permissionsController.getPermissionState(Permission.LOCATION)) {
                 PermissionState.NotDetermined -> onEvent(MainEvent.RequestLocationPermission)
                 PermissionState.Granted -> permissions.update { it.copy(isGranted = true) }
@@ -104,7 +103,7 @@ class MainViewModel : ViewModel(), KoinComponent {
     }
 
     private fun shouldShowSnackbar(location: String) {
-        viewModelScope.launch {
+        launchAsync {
             val favoriteLocation = favoriteLocationByIdInteractor(location)
             if (favoriteLocation.isEmpty()) {
                 onEvent(MainEvent.ShowSaveLocationSnackbar(location))
@@ -112,14 +111,14 @@ class MainViewModel : ViewModel(), KoinComponent {
         }
     }
     private fun loadForecastWithLocation() {
-        viewModelScope.launch {
+        launchAsync {
             val location = locationService.getCurrentLocation()
             loadForecast(location.toString())
         }
     }
 
     private fun requestPermission() {
-        viewModelScope.launch {
+        launchAsync {
             try {
                 permissionsController.providePermission(Permission.LOCATION)
                 permissions.update { it.copy(isGranted = true) }
@@ -132,14 +131,14 @@ class MainViewModel : ViewModel(), KoinComponent {
     }
 
     private fun saveLocation(location: String) {
-        viewModelScope.launch {
+        launchAsync {
             saveFavoriteLocationInteractor(location)
         }
     }
 
     private fun loadForecast(query: String) {
         if (query.isNotEmpty()) {
-            viewModelScope.launch {
+            launchAsync {
                 forecastInteractor(
                     query = query,
                     airQuality = AirQuality.YES,
