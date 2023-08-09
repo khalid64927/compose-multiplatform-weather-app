@@ -79,6 +79,8 @@ kotlin {
                 implementation(libs.io.ktor.client.android)
                 implementation(libs.io.insert.koin.android)
                 implementation(libs.com.google.android.gms.play.services.location)
+                // TODO: check why preview is not working in androidMain
+                implementation(compose.preview)
             }
         }
         val androidUnitTest by getting
@@ -111,9 +113,11 @@ android {
     namespace = "com.rodrigoguerrero.myweather.android"
     compileSdk = 33
     defaultConfig {
-        minSdk = 24
+        minSdk = 21
     }
     compileOptions {
+        // For AGP 4.1+
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -127,7 +131,9 @@ sqldelight {
 }
 
 dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.2")
     implementation(libs.androidx.core)
+    testImplementation("junit:junit:4.12")
 }
 
 multiplatformResources {
@@ -143,5 +149,13 @@ buildkonfig {
     }
     defaultConfigs {
         buildConfigField(STRING, "API_KEY", apiKey)
+    }
+
+    defaultConfigs("uat"){
+        buildConfigField(STRING, "FLAVOR", "uat")
+    }
+
+    defaultConfigs("production"){
+        buildConfigField(STRING, "FLAVOR", "production")
     }
 }
