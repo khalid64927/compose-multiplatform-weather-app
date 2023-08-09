@@ -1,5 +1,6 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.codingfeline.buildkonfig.compiler.FieldSpec.Type.STRING
+import org.jetbrains.compose.compose
 
 plugins {
     alias(libs.plugins.org.jetbrains.kotlin.multiplatform.plugin)
@@ -64,6 +65,14 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
+                implementation(libs.kotlinx.coroutines.test)
+                // ktor
+                implementation(libs.ktor.client.mock)
+
+
             }
         }
         val androidMain by getting {
@@ -76,9 +85,25 @@ kotlin {
                 implementation(libs.com.google.android.gms.play.services.location)
                 // TODO: check why preview is not working in androidMain
                 implementation(compose.preview)
+
+
+
             }
         }
-        val androidUnitTest by getting
+        val androidUnitTest by getting {
+            dependencies {
+                implementation(libs.mockk)
+                // kotest
+                implementation(libs.kotest.runner.junit5)
+                implementation(libs.kotest.assertions.core)
+                implementation(libs.kotest.property)
+
+                // Compose
+                implementation(compose("org.jetbrains.compose.ui:ui-test-junit4"))
+                implementation(libs.junit.jupiter)
+                implementation(libs.junit.vintage.engine)
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -126,9 +151,8 @@ sqldelight {
 }
 
 dependencies {
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.2.2")
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
     implementation(libs.androidx.core)
-    testImplementation("junit:junit:4.12")
 }
 
 multiplatformResources {
