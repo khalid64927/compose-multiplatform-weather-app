@@ -9,7 +9,7 @@ android {
     compileSdk = 34
     defaultConfig {
         applicationId = "com.rodrigoguerrero.myweather"
-        minSdk = 24
+        minSdk = 21
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -20,7 +20,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.4"
     }
-    packagingOptions {
+    packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
@@ -30,7 +30,11 @@ android {
             isMinifyEnabled = false
         }
     }
+
+
     compileOptions {
+        // Flag to enable support for the new language APIs
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
@@ -40,10 +44,13 @@ android {
 }
 
 dependencies {
+    coreLibraryDesugaring (libs.desugar.jdk.libs)
     implementation(project(":shared"))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.activity.compose)
     implementation(libs.org.jetbrains.kotlinx.coroutines.android)
     implementation(libs.androidx.compose.animation)
     implementation(libs.io.insert.koin.android)
+    implementation(compose.preview)
+    debugImplementation(libs.androidx.ui.tooling)
 }
