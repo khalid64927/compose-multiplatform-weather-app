@@ -25,10 +25,12 @@ kotlin-version = "1.8.22"
 ktor-version = "2.3.3"
 media-kamel-image-version = "0.7.0"
 mockk = "1.13.5"
+mockkCommon = "1.10.4"
 org-jetbrains-kotlin-multiplatform-version = "1.8.22"
 org-jetbrains-kotlinx-coroutines-core-version = "1.7.3"
 org-jetbrains-kotlinx-datetime-version = "0.4.1"
 sqldelight-version = "1.5.5"
+testCore = "0.6.1"
 ui-tooling = "1.4.3"
 
 # Unit Testing
@@ -90,6 +92,7 @@ ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor-ve
 media-kamel-image = { module = "media.kamel:kamel-image", version.ref = "media-kamel-image-version" }
 moe-tlaster-precompose = { module = "moe.tlaster:precompose", version.ref = "moe-tlaster-precompose-version" }
 mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+mockk-common = { module = "io.mockk:mockk-common", version.ref = "mockkCommon" }
 org-jetbrains-kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
 org-jetbrains-kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
 org-jetbrains-kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "org-jetbrains-kotlinx-datetime-version" }
@@ -99,6 +102,8 @@ androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", vers
 androidx-test-core = { group = "androidx.test", name = "core", version.ref = "androidxTestCore" }
 androidx-test-ext = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "androidxTestExt" }
 kotlinx-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "org-jetbrains-kotlinx-coroutines-core-version" }
+test-core = { module = "dev.icerock.moko:test-core", version.ref = "testCore" }
+test-roboelectric = { module = "dev.icerock.moko:test-roboelectric", version.ref = "testCore" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
 junit4 = { group = "junit", name = "junit", version.ref = "junit4" }
 

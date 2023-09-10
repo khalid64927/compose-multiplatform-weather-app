@@ -76,8 +76,12 @@ kotlin {
                 implementation(libs.kotlinx.coroutines.test)
                 // ktor
                 implementation(libs.ktor.client.mock)
-
-
+                api(libs.test.core)
+                implementation(libs.junit4)
+                implementation(libs.mockk.common)
+                // TODO: no iOS support for compose
+//                @OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+//                implementation(compose.uiTestJUnit4)
             }
         }
         val androidMain by getting {
@@ -90,14 +94,10 @@ kotlin {
                 implementation(libs.com.google.android.gms.play.services.location)
                 // TODO: check why preview is not working in androidMain
                 implementation(compose.preview)
-
-
-
             }
         }
         val androidUnitTest by getting {
             dependencies {
-                implementation(libs.mockk)
                 // kotest
                 implementation(libs.kotest.runner.junit5)
                 implementation(libs.kotest.assertions.core)
@@ -107,6 +107,8 @@ kotlin {
                 implementation(compose("org.jetbrains.compose.ui:ui-test-junit4"))
                 implementation(libs.junit.jupiter)
                 implementation(libs.junit.vintage.engine)
+
+                implementation(libs.test.roboelectric)
             }
         }
         val iosX64Main by getting
