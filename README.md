@@ -23,4 +23,5 @@ Weather app using Kotlin Multiplatform and Compose Multiplatform.
 - [ktor](https://ktor.io/) - Used for networking
 - [koin](https://insert-koin.io/) - For dependency injection
 - [kotlinx-datetime](https://github.com/Kotlin/kotlinx-datetime) - Date-time related operations
-- [BuildKonfig](https://github.com/yshrsmz/BuildKonfig) - Read values from gradle files 
+- [BuildKonfig](https://github.com/yshrsmz/BuildKonfig) - Read values from gradle files
+- [Kermit](https://github.com/touchlab/Kermit) - Used for logging

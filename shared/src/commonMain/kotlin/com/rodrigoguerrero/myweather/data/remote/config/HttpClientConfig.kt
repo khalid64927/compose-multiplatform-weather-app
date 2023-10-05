@@ -17,15 +17,37 @@ import io.ktor.serialization.JsonConvertException
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import com.rodrigoguerrero.myweather.BuildKonfig
+import com.rodrigoguerrero.myweather.data.local.datastore.PreferencesRepository
+import io.ktor.client.plugins.logging.EMPTY
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
 
-fun createHttpClient(httpClientEngine: HttpClientEngine) = HttpClient(httpClientEngine) {
+fun createHttpClient(
+    httpClientEngine: HttpClientEngine,
+    preferencesRepository: PreferencesRepository,
+    log: co.touchlab.kermit.Logger,
+) = HttpClient(httpClientEngine) {
     expectSuccess = true
     install(Resources)
     install(ContentNegotiation) {
         json(Json { ignoreUnknownKeys = true })
     }
 
+
     exceptionHandling()
+    install(Logging) {
+        level = LogLevel.BODY
+        logger = if (BuildKonfig.FLAVOR.isNotEmpty()) {
+            object : Logger {
+                override fun log(message: String) {
+                    log.i {message}
+                }
+            }
+        } else {
+            Logger.EMPTY
+        }
+    }
 
     defaultRequest {
         url {

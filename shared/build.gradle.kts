@@ -64,6 +64,7 @@ kotlin {
                 api(libs.bundles.moko.permissions)
 
                 api(libs.moe.tlaster.precompose)
+                implementation(libs.touchlab.kermit)
             }
         }
         val commonTest by getting {
