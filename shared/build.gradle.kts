@@ -70,6 +70,9 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(libs.org.jetbrains.kotlinx.coroutines.test)
+                implementation(libs.kotest.assertions)
+                implementation(libs.turbine)
             }
         }
         val androidMain by getting {

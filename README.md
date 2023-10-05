@@ -25,3 +25,6 @@ Weather app using Kotlin Multiplatform and Compose Multiplatform.
 - [kotlinx-datetime](https://github.com/Kotlin/kotlinx-datetime) - Date-time related operations
 - [BuildKonfig](https://github.com/yshrsmz/BuildKonfig) - Read values from gradle files
 - [Kermit](https://github.com/touchlab/Kermit) - Used for logging
+- [Kotest Assertions](https://kotest.io/docs/assertions/assertions.html) - Testing
+- [coroutine-test](https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-test) - Testing
+- [turbine](https://github.com/cashapp/turbine) - https://github.com/cashapp/turbine
