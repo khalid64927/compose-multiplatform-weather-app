@@ -85,6 +85,11 @@ fun TodayWeatherScreen(
 }
 
 @Composable
+fun CurrentWeatherScreenContentForPreview(todayWeatherUiState: TodayWeatherUiState){
+    CurrentWeatherScreenContent(todayWeatherUiState)
+}
+
+@Composable
 private fun CurrentWeatherScreenContent(
     todayWeatherUiState: TodayWeatherUiState,
     modifier: Modifier = Modifier,

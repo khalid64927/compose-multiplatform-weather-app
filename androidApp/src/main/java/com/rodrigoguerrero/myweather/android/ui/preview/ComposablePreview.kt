@@ -6,6 +6,7 @@ import com.rodrigoguerrero.myweather.android.ui.preview.data.todayWeatherUiState
 import com.rodrigoguerrero.myweather.ui.components.CurrentDateItem
 import com.rodrigoguerrero.myweather.ui.components.CurrentDetailsItem
 import com.rodrigoguerrero.myweather.ui.components.CurrentWeatherItem
+import com.rodrigoguerrero.myweather.ui.screens.CurrentWeatherScreenContentForPreview
 import com.rodrigoguerrero.myweather.ui.theme.AppTheme
 
 
@@ -31,4 +32,13 @@ fun CurrentWeatherItemPreview(){
     AppTheme(darkTheme = false, dynamicColor = false) {
         CurrentWeatherItem(todayWeatherUiState)
     }
+}
+
+@Preview
+@Composable
+fun CurrentWeatherScreenContentPreview(){
+    AppTheme(darkTheme = false, dynamicColor = false) {
+        CurrentWeatherScreenContentForPreview(todayWeatherUiState)
+    }
+
 }
