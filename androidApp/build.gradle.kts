@@ -44,6 +44,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.material3)
     coreLibraryDesugaring (libs.desugar.jdk.libs)
     implementation(project(":shared"))
     implementation(libs.androidx.compose.ui)
@@ -53,4 +54,5 @@ dependencies {
     implementation(libs.io.insert.koin.android)
     implementation(compose.preview)
     debugImplementation(libs.androidx.ui.tooling)
+    //implementation()
 }

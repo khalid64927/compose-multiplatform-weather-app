@@ -5,8 +5,6 @@ import com.rodrigoguerrero.myweather.ui.models.uistate.TodayWeatherUiState
 import com.rodrigoguerrero.mywheather.MR
 
 
-
-
 // Preview Data
 val todayWeatherUiState: TodayWeatherUiState = TodayWeatherUiState(
     currentTime = "9 August, 11:00",

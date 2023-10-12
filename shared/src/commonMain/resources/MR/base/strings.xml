@@ -58,4 +58,28 @@
     <string name="chance_of_rain">Chance of rain</string>
     <string name="sunrise_sunset_tomorrow_details">Sunrise/sunset</string>
     <string name="max_wind_speed">Max: %s km/h</string>
+
+    <!--Prepaid Strings-->
+    <!--TC-->
+    <string name="tc_title">Terms and Conditions</string>
+    <string name="tc_para_one">heya understands that privacy is important to you. We collect information to better understand your needs, enhance our customer engagement and improve our products and services.</string>
+    <string name="tc_title_one">Specifically, we collect information about you to:</string>
+    <string name="tc_end_text">By clicking on the \"I agree\" button, you consent to heya and the Singtel Group collecting, using and disclosing your data for the purposes stated above and in accordance with our Data Protection Policy. You may withdraw consent at any time by turning off the relevant consent setting in your device or by deleting this App.
+        You agree that all information in the App are provided on an \“as is\” and \“as available\” basis. While we make every effort to ensure that all content displayed is accurate and complete, the content is for informative purposes only and products offered are subject to availability and change. Heya and the Singtel Group disclaim all and any express or implied warranties of any kind, including but not limited to warranties about accuracy, completeness, correctness, fitness or suitability for any purpose in relation to the App\’s contents.
+        You can read more about the full Terms and Conditions that governs the use of this App.</string>
+
+
+    <string name="tc_title_two">We need your permission to access certain functionalities on your device, namely:</string>
+
+    <string name="tc_bullet_point_1_1">Authenticate your heya mobile number.</string>
+    <string name="tc_bullet_point_1_2">Provide goods and services through heya, our designated representatives and/or business partners, to you or parties designated by you (and to facilitate matters ancillary to the provision of such goods and services).</string>
+    <string name="tc_bullet_point_1_3">Verify and process payment when you purchase goods and services from us.</string>
+    <string name="tc_bullet_point_1_4">Verify and record your personal particulars including comparing them with information from other sources and using the information to communicate with you.</string>
+    <string name="tc_bullet_point_1_5">Enable multi-factor authentication so that we can protect you against unauthorised log-ins.</string>
+
+    <string name="tc_bullet_point_2_1">Contacts: to retrieve contact details for name display.</string>
+    <string name="tc_bullet_point_2_2">SMS: to send you One-Time Pins (OTPs) and personalised marketing offers.</string>
+    <string name="tc_bullet_point_2_3">Location and Mobile/WiFi network: to monitor our network and help us understand and improve your network experience. This is done by checking your signal strength, connection speed, WiFi access point and what mobile phone towers you’re connected to based on your location. We don’t see things like who you’re calling, what websites you’re browsing or what apps you’re using.</string>
+    <string name="tc_iagree">I agree</string>
+
 </resources>

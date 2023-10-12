@@ -33,8 +33,6 @@ fun createHttpClient(
     install(ContentNegotiation) {
         json(Json { ignoreUnknownKeys = true })
     }
-
-
     exceptionHandling()
     install(Logging) {
         level = LogLevel.BODY

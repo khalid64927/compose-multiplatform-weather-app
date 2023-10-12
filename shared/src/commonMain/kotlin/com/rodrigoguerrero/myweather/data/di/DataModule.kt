@@ -14,6 +14,7 @@ import com.rodrigoguerrero.mywheather.database.AppDatabase
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import org.koin.core.parameter.parametersOf
+import org.koin.core.qualifier.named
 import org.koin.core.scope.Scope
 import org.koin.dsl.module
 
@@ -23,6 +24,7 @@ val dataModule = module {
     single<PreferencesRepository> { DataStorePreferencesRepository(dataStoreProvider = get()) }
     single<WeatherRepository> { KtorWeatherRepositoryImpl(httpClient = get()) }
     single { createHttpClient(httpClientEngine = get(), preferencesRepository = get(), log = getWith<Logger>("Ktor").withTag("Ktor-Client")) }
+    single (named("prepaidClient")) { createHttpClient(httpClientEngine = get(), preferencesRepository = get(), log = getWith<Logger>("Ktor").withTag("Ktor-Client")) }
     single<LocationDataSource> {
         SqDelightLocationDataSource(
             database = AppDatabase(driver = get())

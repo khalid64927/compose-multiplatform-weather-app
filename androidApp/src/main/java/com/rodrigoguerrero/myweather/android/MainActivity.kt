@@ -11,7 +11,8 @@ class MainActivity : PreComposeActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             App(
-                darkTheme = isSystemInDarkTheme(),
+                //darkTheme = isSystemInDarkTheme(),
+                darkTheme = false,
                 dynamicColor = true,
             )
         }

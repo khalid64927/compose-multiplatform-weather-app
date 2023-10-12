@@ -3,6 +3,8 @@ package com.rodrigoguerrero.myweather.ui.navigation
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.khalid.prepaid.ui.screens.SplashScreen
+import com.khalid.prepaid.ui.screens.TermsAndConditionScreen
 import com.rodrigoguerrero.myweather.ui.screens.MainScreen
 import com.rodrigoguerrero.myweather.ui.screens.SearchScreen
 import moe.tlaster.precompose.navigation.NavHost
@@ -13,8 +15,18 @@ import moe.tlaster.precompose.navigation.rememberNavigator
 fun RootNavGraph(navigator: Navigator = rememberNavigator()) {
     NavHost(
         navigator = navigator,
-        initialRoute = "/home",
+        initialRoute = "/splash",
     ) {
+        scene("/splash") {
+            SplashScreen(
+                onNavigateNext = { navigator.navigate("/termsAndConditions") },
+            )
+        }
+        scene("/termsAndConditions") {
+            TermsAndConditionScreen(
+                onNavigateToSearch = { navigator.navigate("/home") },
+            )
+        }
         scene("/home") {
             MainScreen(
                 modifier = Modifier.fillMaxSize(),
